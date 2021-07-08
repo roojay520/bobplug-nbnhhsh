@@ -4,6 +4,7 @@ interface QueryOption {
   to?: Bob.Language;
   from?: Bob.Language;
   cache?: string;
+  timeout?: number;
 }
 
 var resultCache = new Bob.CacheResult('translate-result');
@@ -15,7 +16,7 @@ var resultCache = new Bob.CacheResult('translate-result');
  * @return {object} 一个符合 bob 识别的翻译结果对象
  */
 async function _translate(text: string, options: QueryOption = {}): Promise<Bob.TranslateResult> {
-  const { from = 'auto', to = 'auto', cache = 'enable' } = options;
+  const { from = 'auto', to = 'auto', cache = 'enable', timeout = 10000 } = options;
   const cacheKey = `${text}${from}${to}`;
   if (cache === 'enable') {
     const _cacheData = resultCache.get(cacheKey);
@@ -27,10 +28,28 @@ async function _translate(text: string, options: QueryOption = {}): Promise<Bob.
   const result: Bob.TranslateResult = { from, to, toParagraphs: [] };
 
   try {
-    // 在此处实现翻译的具体处理逻辑
-    result.toParagraphs = ['测试文字'];
-    result.fromParagraphs = [];
-    // result.toDict = { parts: [], phonetics: [] };
+    const api = `https://lab.magiconch.com/api/nbnhhsh/guess`;
+    const [err, res] = await Bob.util.asyncTo<Bob.HttpResponse>(
+      Bob.api.$http.post({
+        timeout,
+        url: api,
+        header: {
+          'Content-Type': 'application/json;charset=UTF-8',
+        },
+        body: { text },
+      }),
+    );
+    result.toParagraphs = ['暂无释义'];
+    if (err) Bob.api.$log.error(err);
+    const resData = res?.data;
+    // [{"name":"lol","trans":["大笑","英雄联盟"]}]
+    const str: string[] = [];
+    resData.forEach((row: any) => {
+      if (Bob.util.isArrayAndLenGt(row?.trans, 0)) {
+        str.push(...row.trans);
+      }
+    });
+    if (str.length) result.toParagraphs = [str.join('; ')];
   } catch (error) {
     throw Bob.util.error('api', '数据解析错误出错', error);
   }
