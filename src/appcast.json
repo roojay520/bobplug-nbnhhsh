@@ -1,4 +1,12 @@
 {
   "identifier": "com.roojay.bobplug.bobplugnbnhhsh",
-  "versions": []
+  "versions": [
+    {
+      "version": "0.0.1",
+      "desc": "https://github.com/roojay520/bobplug-nbnhhsh/blob/master/CHANGELOG.md",
+      "sha256": "34be259df063f52ec9b43aaa5b55623e488f34dc71db6c731416b768ff713e94",
+      "url": "https://github.com/roojay520/bobplug-nbnhhsh/releases/download/v0.0.1/bobplug-nbnhhsh-v0.0.1.bobplugin",
+      "minBobVersion": "0.5.0"
+    }
+  ]
 }
