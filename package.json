@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@bob-plug/core": "^0.1.3",
+    "is-english": "^1.3.0",
     "querystring": "^0.2.1"
   },
   "devDependencies": {

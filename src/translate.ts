@@ -1,5 +1,7 @@
 import * as Bob from '@bob-plug/core';
 
+import isEnglish from 'is-english';
+
 interface QueryOption {
   to?: Bob.Language;
   from?: Bob.Language;
@@ -25,31 +27,31 @@ async function _translate(text: string, options: QueryOption = {}): Promise<Bob.
     resultCache.clear();
   }
 
-  const result: Bob.TranslateResult = { from, to, toParagraphs: [] };
-
+  const result: Bob.TranslateResult = { from, to, toParagraphs: ['暂无释义'] };
   try {
-    const api = `https://lab.magiconch.com/api/nbnhhsh/guess`;
-    const [err, res] = await Bob.util.asyncTo<Bob.HttpResponse>(
-      Bob.api.$http.post({
-        timeout,
-        url: api,
-        header: {
-          'Content-Type': 'application/json;charset=UTF-8',
-        },
-        body: { text },
-      }),
-    );
-    result.toParagraphs = ['暂无释义'];
-    if (err) Bob.api.$log.error(err);
-    const resData = res?.data;
-    // [{"name":"lol","trans":["大笑","英雄联盟"]}]
-    const str: string[] = [];
-    resData.forEach((row: any) => {
-      if (Bob.util.isArrayAndLenGt(row?.trans, 0)) {
-        str.push(...row.trans);
-      }
-    });
-    if (str.length) result.toParagraphs = [str.join('; ')];
+    if (isEnglish(text) && text.length < 100) {
+      const api = `https://lab.magiconch.com/api/nbnhhsh/guess`;
+      const [err, res] = await Bob.util.asyncTo<Bob.HttpResponse>(
+        Bob.api.$http.post({
+          timeout,
+          url: api,
+          header: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+          body: { text },
+        }),
+      );
+      if (err) Bob.api.$log.error(err);
+      const resData = res?.data;
+      // [{"name":"lol","trans":["大笑","英雄联盟"]}]
+      const str: string[] = [];
+      resData.forEach((row: any) => {
+        if (Bob.util.isArrayAndLenGt(row?.trans, 0)) {
+          str.push(...row.trans);
+        }
+      });
+      if (str.length) result.toParagraphs = [str.join('; ')];
+    }
   } catch (error) {
     throw Bob.util.error('api', '数据解析错误出错', error);
   }
