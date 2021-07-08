@@ -9,7 +9,8 @@ const config = require('./config');
 const info = require('../src/info.json');
 const packageJson = require('../package.json');
 
-const appcast = `https://github.com/${config.github.username}/${config.github.repository}/master/src/appcast.json`;
+// eslint-disable-next-line max-len
+const appcast = `https://raw.githubusercontent.com/${config.github.username}/${config.github.repository}/master/src/appcast.json`;
 
 const { version, author = '', homepage = '', description = '' } = packageJson;
 const infoData = { ...info, version, author, homepage, summary: description, appcast };
