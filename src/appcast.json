@@ -2,6 +2,13 @@
   "identifier": "com.roojay.bobplug.bobplugnbnhhsh",
   "versions": [
     {
+      "version": "0.0.5",
+      "desc": "https://github.com/roojay520/bobplug-nbnhhsh/blob/master/CHANGELOG.md",
+      "sha256": "473309d385e2715cc061d5992217b0ae4a40e1b524db875f0e43522a9d6b3b2d",
+      "url": "https://github.com/roojay520/bobplug-nbnhhsh/releases/download/v0.0.5/bobplug-nbnhhsh-v0.0.5.bobplugin",
+      "minBobVersion": "0.5.0"
+    },
+    {
       "version": "0.0.3",
       "desc": "https://github.com/roojay520/bobplug-nbnhhsh/blob/master/CHANGELOG.md",
       "sha256": "382575ae7a58865b5d8260e6cf0e4210eec7a36e9e72da3e7ae37ae3c0bbfd75",
