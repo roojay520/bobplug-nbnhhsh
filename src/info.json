@@ -14,7 +14,7 @@
       "identifier": "cache",
       "type": "menu",
       "title": "缓存",
-      "defaultValue": "disable",
+      "defaultValue": "enable",
       "menuValues": [
         {
           "title": "开启",
