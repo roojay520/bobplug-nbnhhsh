@@ -1,3 +1,12 @@
+## [0.0.5](https://github.com/roojay520/bobplug-nbnhhsh/compare/v0.0.4...v0.0.5) (2021-07-08)
+
+
+### Bug Fixes
+
+* 修复更新地址 ([17b57e2](https://github.com/roojay520/bobplug-nbnhhsh/commit/17b57e239ed718fc5eae7fbca6347c3f3693f9bd))
+
+
+
 ## [0.0.4](https://github.com/roojay520/bobplug-nbnhhsh/compare/v0.0.3...v0.0.4) (2021-07-08)
 
 

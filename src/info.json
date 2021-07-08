@@ -1,11 +1,11 @@
 {
   "identifier": "com.roojay.bobplug.bobplugnbnhhsh",
   "category": "translate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "能不能好好说话",
   "summary": "拼音首字母缩写释义工具",
   "author": "roojay520",
-  "appcast": "https://github.com/roojay520/bobplug-nbnhhsh/master/src/appcast.json",
+  "appcast": "https://raw.githubusercontent.com/roojay520/bobplug-nbnhhsh/master/src/appcast.json",
   "homepage": "https://github.com/roojay520/bobplug-nbnhhsh",
   "icon": "001",
   "minBobVersion": "0.5.0",
